@@ -15,7 +15,7 @@ C.w_e = 7.292115146706979e-5;
 C.m = 2000;
 
 % Spacecraft areas, in m^2;
-C.Area = 6;
+C.area = 6;
 
 % Atmospheric Parameters
 % Reference height for atmosphere model, in km
@@ -24,3 +24,9 @@ C.H = 88.667;
 C.rho_0 = 3.614e-13;
 % Base radius, in km;
 C.r_0 = 700 + C.R_e; 
+
+% Station Parameters
+% Positions in ECEF (ITRF), in km
+C.station_pos = [-6143.584, 1907.295, 2390.310;
+                 1364.250, 6030.810, -5564.341;
+                 1033.743, -817.119, 1994.578];
