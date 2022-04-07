@@ -45,20 +45,35 @@ Acc_J2(3) = Acc_J2_Mag * z * (5 * (z/norm(Pos))^2 - 3);
 
 % Find Drag Acceleration
 V_Rel = [vx + C.w_e*y; vy - C.w_e*x; vz];
-Acc_Drag = -1/2 * C_d * C.Area / C.m * C.rho_0 * ...
+Acc_Drag = -1/2 * C_d * C.area / C.m * C.rho_0 * ...
            exp(-(norm(Pos) - C.r_0) / C.H) * 1000 * norm(V_Rel) * V_Rel;
 
 % Combine Accelerations
 Acc = Acc_2B + Acc_J2 + Acc_Drag;
 
+% Find Range and Range Rate
+R_S_ECEF = sym('R_S_ECEF', [3 1]);
+WMat = sym('WMat', [3 3]);
+PNSMat = sym('PNSMat', [3 3]);
+R_S_PEF = WMat * R_S_ECEF;
+R_S_ECI = PNSMat * R_S_PEF;
+V_S_ECI = PNSMat * cross([0; 0; C.w_e], R_S_PEF);
+
+Range = norm(Pos - R_S_ECI);
+Range_Rate = dot(Pos - R_S_ECI, Vel - V_S_ECI) / Range;
+
 % Form Full Vectors
 X = [Pos; Vel; C_d; C_solar; b1; b2; b3];
 F = [Vel; Acc; 0; 0; 0; 0; 0];
+Z = [Range; Range_Rate];
 
-% Find Partial Derivatives for A Matrix
+% Find Partial Derivatives for Matrices
 for i = 1:11
     for j = 1:11
         A(i, j) = diff(F(i), X(j));
+    end
+    for k = 1:2
+        HTilde(k, i) = diff(Z(k), X(i));
     end
 end
 
