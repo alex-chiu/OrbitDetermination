@@ -1,9 +1,11 @@
-function [getAMat, getHTildeMat, getGVec] = get_symb_func(C)
+function [getAMat, getHTildeMat, getGVec, getAcc] = get_symb_func(C, State_Flag)
 % full_prop : Full propagation function with perturbations
 %
 % INPUTS
 %
 % C -------------- Structure containing all necessary constants
+%
+% State_Flag ----- Flag for number of states to use
 %
 % OUTPUTS
 %
@@ -28,6 +30,10 @@ G = sym("G", [2 1]);
 
 % Define State Variables
 syms x y z vx vy vz C_d C_solar b1 b2 b3;
+
+if (State_Flag == 6)
+    C_d = C.C_d;
+end
 
 % Populate Helper Vectors
 Pos = [x; y; z];
@@ -80,5 +86,6 @@ end
 % Convert Matrices to Function Handles
 getAMat = matlabFunction(A);
 getHTildeMat = matlabFunction(HTilde);
-getGVec = matlabFunction(G);
+getGVec = matlabFunction(Z);
+getAcc = matlabFunction(Acc);
 end

@@ -24,9 +24,14 @@ C.H = 88.667;
 C.rho_0 = 3.614e-13;
 % Base radius, in km;
 C.r_0 = 700 + C.R_e; 
+% Drag Coefficient
+C.C_d = 2.0;
 
 % Station Parameters
 % Positions in ECEF (ITRF), in km
 C.station_pos = [-6143.584, 1907.295, 2390.310;
                  1364.250, 6030.810, -5564.341;
                  1033.743, -817.119, 1994.578];
+
+% ODE Parameters
+C.options = odeset('RelTol', 1e-12, 'AbsTol', 1e-12);
