@@ -54,6 +54,9 @@ V_Rel = [vx + C.w_e*y; vy - C.w_e*x; vz];
 Acc_Drag = -1/2 * C_d * C.area / C.m * C.rho_0 * ...
            exp(-(norm(Pos) - C.r_0) / C.H) * 1000 * norm(V_Rel) * V_Rel;
 
+% Find SRP Acceleration
+% TODO
+
 % Combine Accelerations
 Acc = Acc_2B + Acc_J2 + Acc_Drag;
 

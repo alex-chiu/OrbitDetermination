@@ -36,4 +36,4 @@ TODO:
     - Add SRP 
     - Add 3rd body
 - Check filter and filter equations
-- Confirm HW 5 results and move to working on HW 6
+- Lighttime correction
