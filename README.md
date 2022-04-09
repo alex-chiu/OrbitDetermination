@@ -6,6 +6,8 @@ Main Program - Final_Project_Main.m
 get_symb_func.m
 Calculates symbolic functions for finding A and \tilde{H} Matrices, and G Function. Returns a set of function handles.
 
+NOTES - WORK ON SAVING RESIDUALS FOR ANALYSIS
+
 Tips (4/7/2022)
 
 Assumptions:

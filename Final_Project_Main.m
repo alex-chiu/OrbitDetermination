@@ -2,7 +2,7 @@
 % ASE 389.4 Methods of Orbit Determination
 % Final Project
 % Author: Alex Chiu (ac68767)
-% Last Edited: 04/08/2022
+% Last Edited: 04/09/2022
 % Summary: Main Script for Final Project
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
